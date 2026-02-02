@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env (nie commitujemy!)
+venv/
+.env
+
+# Dane i output
+data/
+*.csv
+*.json
+*.sqlite
+*.db
+
+# Notebooks output
+.ipynb_checkpoints/
+
+# Screenshots / exporty
+screenshots/
+
+# OS
+.DS_Store
+Thumbs.db
