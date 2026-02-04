@@ -1,3 +1,5 @@
+import pandas as pd
+
 def split_response(response: dict):
     #lista słowników z produktami
     data = response.get('data').get('clientCompatibleListings').get('data')
@@ -21,7 +23,7 @@ def cumulate_data(pages: list) -> list:
         
     return data
 
-def data_separate(data):
+def data_separate(data: list) -> dict:
     FIELD_MAP = {
     "data_location": [
         "id", "location", "map", "isGpsrAvailable"
@@ -58,3 +60,7 @@ def data_separate(data):
             separate_data[group_name].append(record)
 
     return separate_data
+
+def normalize_data(separate_data: dict) -> dict:
+    dfs = {name: pd.json_normalize(records) for name, records in separate_data.items()}
+    return dfs
