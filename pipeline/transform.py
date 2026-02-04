@@ -17,6 +17,6 @@ def split_response(response: dict):
 def cumulate_data(pages: list) -> list:
     data = []
     for page in pages:
-        data.extend(page)
+        data.extend(page.get('data'))
         
     return data
