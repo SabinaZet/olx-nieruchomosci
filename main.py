@@ -8,3 +8,5 @@ if __name__ == '__main__':
     pages_l = pr.pagination(total)
     pages = [pt.split_response(page) for page in pages_l]
     pages.insert(0, page1)
+    
+    data = pt.cumulate_data(pages)

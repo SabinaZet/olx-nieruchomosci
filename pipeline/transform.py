@@ -13,3 +13,10 @@ def split_response(response: dict):
         'metadata':metadata,
         'links':links
         }
+
+def cumulate_data(pages: list) -> list:
+    data = []
+    for page in pages:
+        data.extend(page)
+        
+    return data
