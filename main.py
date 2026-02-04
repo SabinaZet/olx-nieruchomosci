@@ -10,3 +10,5 @@ if __name__ == '__main__':
     pages.insert(0, page1)
     
     data = pt.cumulate_data(pages)
+    
+    separate_data = pt.data_separate(data)
