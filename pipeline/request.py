@@ -24,6 +24,7 @@ def paginate() -> list:
 
     page = pt.split_response(request())
     nxt_link = pt.next_link(page)
+    pages.append(page)
     
     while nxt_link:
         
