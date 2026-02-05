@@ -1,20 +1,23 @@
 import pandas as pd
 
-def split_response(response: dict):
-    #lista słowników z produktami
-    data = response.get('data').get('clientCompatibleListings').get('data')
+def split_response(page: dict) -> dict:
+    try:
+        #lista słowników z produktami
+        data = page.get('data').get('clientCompatibleListings').get('data')
 
-    #słownik z metadanymi
-    metadata = response.get('data').get('clientCompatibleListings').get('metadata')
+        #słownik z metadanymi
+        metadata = page.get('data').get('clientCompatibleListings').get('metadata')
 
-    #słownik z linkami do następnej/poprzedniej strony
-    links = response.get('data').get('clientCompatibleListings').get('links')
-    
-    return {
-        'data':data,
-        'metadata':metadata,
-        'links':links
-        }
+        #słownik z linkami do następnej/poprzedniej strony
+        links = page.get('data').get('clientCompatibleListings').get('links')
+        
+        return {
+            'data':data,
+            'metadata':metadata,
+            'links':links
+            }
+    except:
+        print(type(page))
 
 def cumulate_data(pages: list) -> list:
     data = []
@@ -64,3 +67,23 @@ def data_separate(data: list) -> dict:
 def normalize_data(separate_data: dict) -> dict:
     dfs = {name: pd.json_normalize(records) for name, records in separate_data.items()}
     return dfs
+
+def key_info(dfs: dict):
+    for key in dfs.keys():
+        print()
+        print(key)
+        print(dfs[key].info())
+
+def clean_nan(dfs: dict) -> dict:
+    for name, df in dfs.items():
+        dfs[name] = df.dropna(axis=1, how="all")
+    return dfs
+
+def check_data(dfs: dict):
+    for key, df in dfs.items():
+        print()
+        print(key)
+        try:
+            print(df.nunique())
+        except:
+            print('Lista')
