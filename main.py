@@ -4,11 +4,11 @@ if __name__ == '__main__':
     
 #list of dicts with scraped pages data,metadata and links
     pages = pr.paginate()
-    
+#list with only data values from all pages
     data = pt.cumulate_data(pages)
     
 #dict with data split into categories(data_location,
-#data_offer,data_photos itp)
+#data_offer,data_photos itp) by FIELD_MAP
     separate_data = pt.data_separate(data)
     
 #dict with categories as keys and flattened DataFrames as values

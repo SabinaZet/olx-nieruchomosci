@@ -1,5 +1,10 @@
+"""Set URL, headers and json for POST and GET requests.
+Parameters and values found with DevTools and cURL.
+"""
+
 url = 'https://www.olx.pl/apigateway/graphql'
 
+#use Windows to be less seen by atnibot
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36',
     'Accept-Language': 'pl',
