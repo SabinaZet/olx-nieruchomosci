@@ -3,9 +3,9 @@ if __name__ == '__main__':
     import pipeline.transform as pt
     
     pages = pr.paginate()
-        
-    data = pt.cumulate_data(pages)
     
+    data = pt.cumulate_data(pages)
+         
     separate_data = pt.data_separate(data)
     
     separate_dfs = pt.normalize_data(separate_data)

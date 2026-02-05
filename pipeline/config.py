@@ -15,7 +15,7 @@ json_data = {
     'variables': {
         'searchParameters': [
             {
-                'key': 'offset',
+                'key': '0',
                 'value': '0',
             },
             {

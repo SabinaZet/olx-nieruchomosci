@@ -1,4 +1,5 @@
 import pandas as pd
+import pipeline.config as co
 
 def split_response(page: dict) -> dict:
     try:
@@ -19,10 +20,14 @@ def split_response(page: dict) -> dict:
     except:
         print(type(page))
 
-def cumulate_data(pages: list) -> list:
+def next_link(request: dict) -> str:
+    link = request.get('links').get('next').get('href')
+    return link
+
+def cumulate_data(pages) -> list:
     data = []
     for page in pages:
-        data.extend(page.get('data'))
+        data.extend(page['data'])
         
     return data
 
