@@ -24,14 +24,14 @@ import pipeline.config as co
 import pipeline.transform as pt
 
 def request() -> dict:
-"""Post first POST request to API.
-Prints status code.
+    """Post first POST request to API.
+    Prints status code.
 
-Returns
-----------
-dict
-    data, metadata, links wrapped up in a multi level format
-"""
+    Returns
+    ----------
+    dict
+        data, metadata, links wrapped up in a multi level format
+    """
     response = requests.post(co.url, headers=co.headers,
                              json=co.json_data)
 
@@ -41,43 +41,43 @@ dict
     return response.json()
 
 def fetch_next_page(next_url: str) -> dict:
-"""Sends GET request to API using provided link.
-Prints status code.
+    """Sends GET request to API using provided link.
+    Prints status code.
 
-Can fail if bad dtype or no link provided.
+    Can fail if bad dtype or no link provided.
 
-Parameters
-----------
-next_url : str
-    URL to direct API request
-    
-Returns
-----------
-dict
-    data, metadata, links wrapped up in a dictionary
-"""
+    Parameters
+    ----------
+    next_url : str
+        URL to direct API request
+        
+    Returns
+    ----------
+    dict
+        data, metadata, links wrapped up in a dictionary
+    """
     response = requests.get(next_url, headers=co.headers)
     print("Status code: ", response.status_code)
     return response.json()
 
 
 def paginate() -> list:
-"""Send requests to API and collect received data.
-Next extract the 'next_link' value from 'links' to send
-with next API request.
+    """Send requests to API and collect received data.
+    Next extract the 'next_link' value from 'links' to send
+    with next API request.
 
-Prints message when request error occurs.
-Prints message when error with getting the link occurs.
+    Prints message when request error occurs.
+    Prints message when error with getting the link occurs.
 
-Ends proceeding when no link found in the
-['links']['next']['href'] so it can crash here
-(data structure can be different somewhere).
+    Ends proceeding when no link found in the
+    ['links']['next']['href'] so it can crash here
+    (data structure can be different somewhere).
 
-Returns
-----------
-list
-    dicts with data, metadata, links of each page
-"""
+    Returns
+    ----------
+    list
+        dicts with data, metadata, links of each page
+    """
     pages = []
 
 #split first multilevel dict into data,metadata,links
