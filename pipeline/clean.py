@@ -85,7 +85,26 @@ def check_data(dfs: dict):
         except:
             print('Lista')
 
-#def clean_data(df, report=True):
+def nan_report(dfs: dict, report: bool = True) -> dict:
     """Report = amount of deleted records, null,
     duplicates etc.
+    
+    Parameters
+    ----------
+    dfs : dict
+        DataFrames as values
+    report : bool
+        prints out the report, default: True
+        
+    Returns
+    ----------
+    dict
+        categories as keys and report as values
     """
+    nan_vals = {name: df.isna().sum()
+                for name, df in dfs.items()}
+    if report == True:
+        for n, d in nan_vals.items():
+            print(f'\nNumber of NaN values in columns of {n}:')
+            print(d)
+    return nan_vals        
