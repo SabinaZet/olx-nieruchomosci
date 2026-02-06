@@ -26,9 +26,11 @@ def key_info(dfs: dict):
         print()
         print(key)
         print(dfs[key].info())
+        print(dfs[key].head(2))
 
-def clean_nan(dfs: dict) -> dict:
-    """Delete empty columns in all DataFrames stored in dict.
+def clean_nan_df(dfs: dict) -> dict:
+    """Delete empty columns and duplicate rows
+    in all DataFrames stored in dict.
 
     Parameters
     ----------
@@ -42,6 +44,26 @@ def clean_nan(dfs: dict) -> dict:
     """
     for name, df in dfs.items():
         dfs[name] = df.dropna(axis=1, how="all")
+        
+    return dfs
+
+def deduplicate(dfs: dict) -> dict:
+    """Delete duplicate rows in all DataFrames stored
+    in dict.
+
+    Parameters
+    ----------
+    dfs : dict
+        DataFrames stored as dict values
+        
+    Returns
+    ----------
+    dict
+        cleaned DataFrames as dict values
+    """
+    for name, df in dfs.items():
+        dfs[name] = df.drop_duplicates(subset="id")
+        
     return dfs
 
 def check_data(dfs: dict):
@@ -62,3 +84,8 @@ def check_data(dfs: dict):
             print(df.nunique())
         except:
             print('Lista')
+
+#def clean_data(df, report=True):
+    """Report = amount of deleted records, null,
+    duplicates etc.
+    """
