@@ -1,13 +1,12 @@
 if __name__ == '__main__':
-    import pipeline.request as pr
-    import pipeline.transform as pt
+    from pipeline import paginate, normalized_data
     import pipeline.clean as pc
     
 #list of dicts with scraped pages data,metadata and links
-    pages = pr.paginate()
+    pages = paginate()
 
 #dict with data split into categories and DFs as values
-    data_categories = pt.normalized_data(pages)
+    data_categories = normalized_data(pages)
     
 #data cleaning
     
