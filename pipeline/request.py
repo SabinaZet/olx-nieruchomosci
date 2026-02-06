@@ -25,7 +25,7 @@ import pipeline.transform as pt
 
 def request() -> dict:
     """Post first POST request to API.
-    Prints status code.
+    Prints if status code is not 200.
 
     Returns
     ----------
@@ -35,7 +35,8 @@ def request() -> dict:
     response = requests.post(co.url, headers=co.headers,
                              json=co.json_data)
 
-    print("Response status code: ", response.status_code)
+    if response.status_code != 200:
+        print("Response status code: ", response.status_code)
     
     
     return response.json()
@@ -57,7 +58,9 @@ def fetch_next_page(next_url: str) -> dict:
         data, metadata, links wrapped up in a dictionary
     """
     response = requests.get(next_url, headers=co.headers)
-    print("Status code: ", response.status_code)
+    
+    if response.status_code != 200:
+        print("Status code: ", response.status_code)
     return response.json()
 
 
