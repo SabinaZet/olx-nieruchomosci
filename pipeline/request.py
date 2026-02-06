@@ -1,6 +1,8 @@
 """Sending requests to API and collecting returned JSON
 data from all the pages sorted by the latest date of adding.
 
+Try using Sessions instead of requests.
+
 Imports
 ----------
 import requests
@@ -43,7 +45,7 @@ def request() -> dict:
 
 def fetch_next_page(next_url: str) -> dict:
     """Sends GET request to API using provided link.
-    Prints status code.
+    Prints status code if it's not 200.
 
     Can fail if bad dtype or no link provided.
 
@@ -101,11 +103,11 @@ def paginate() -> list:
                 if not nxt_link:
                     break
             except:
-                print('Błąd na tworzeniu nxt_link')
+                print('No \'next\' link')
                 break
             
         except:
-            print('Błąd na linku: ', nxt_link)
+            print('Bad link: ', nxt_link)
             break
 
     return pages

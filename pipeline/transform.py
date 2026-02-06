@@ -125,7 +125,7 @@ def cumulate_data(pages: list) -> list:
         
     return data
 
-def data_separate(data: list, FIELD_MAP=FIELD_MAP: dict) -> dict:
+def data_separate(data: list, FIELD_MAP: dict=FIELD_MAP) -> dict:
     """Separate all scraped 'data' values into categories.
 
     Created for OLX data structure, so will break if it changes.
