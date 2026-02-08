@@ -1,6 +1,5 @@
 if __name__ == '__main__':
-    from pipeline import paginate, normalized_data
-    import pipeline.clean as pc
+    from pipeline import paginate, normalized_data, key_info, nan_report, clean_data
     
 #list of dicts with scraped pages data,metadata and links
     pages = paginate()
@@ -14,18 +13,18 @@ if __name__ == '__main__':
 #for all dfs before cleaning
     print()
     print("Info summary about DataFrames before cleaning:")
-    pc.key_info(data_categories)
+    key_info(data_categories)
 #clean DataFrames    
-    pc.clean_data(data_categories)
+    clean_data(data_categories)
 #print report about NaN values in DataFrames columns    
     print()
     print('NaN Report:\n')
-    pc.nan_report(data_categories)
+    nan_report(data_categories)
     
 #print df.info(), nunique() and head(2) for all dfs
 #after cleaning
     print()
     print("Info summary about DataFrames after cleaning:")
-    pc.key_info(data_categories)
+    key_info(data_categories)
     
     
