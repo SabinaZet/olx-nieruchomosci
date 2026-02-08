@@ -156,7 +156,7 @@ def clean_url(dfs: dict):
     dfs : dict
         DataFrames stored as dict values
     """
-    dfs['data_offer'].dropna(subset='url', inplace=True)
+    dfs['data_offer'].dropna(subset=['url'], inplace=True)
 
 def deduplicate(dfs: dict):
     """Delete duplicate rows in all DataFrames stored
@@ -229,7 +229,7 @@ def delete_columns(dfs: dict, DEL_MAP: dict = DEL_MAP):
         if name not in dfs:
             continue
         
-        dfs[name].drop(col, inplace=True, axis=1)
+        dfs[name].drop(columns=col, inplace=True, axis=1, errors='ignore')
         
 def id_index(dfs: dict):
     """Set indexes for DataFrames to 'id' values.
@@ -240,7 +240,8 @@ def id_index(dfs: dict):
         DataFrames stored as dict values
     """
     for name, col in dfs.items():
-        dfs[name] = dfs[name].set_index('id')
+        if 'id' in dfs[name].columns:
+            dfs[name] = dfs[name].set_index('id')
         
 def col_names(dfs: dict):
     """Change column names in DataFrames.

@@ -27,9 +27,12 @@ def save_csv(dfs: dict, cols: list = cols):
     cols : list
         DataFrames to save
     """
-    f = pd.Timestamp.now('Europe/Warsaw').strftime("%d.%m.%Y %I:%M:%S")
+    f = pd.Timestamp.now('Europe/Warsaw').strftime("%d.%m.%Y")
     for col in cols:
-        name = f"/home/itsme/Projekty/olx-nieruchomosci/data/csv/{col + ' ' + str(f)}"
+        name = f"/home/itsme/Projekty/olx-nieruchomosci/data/csv/{col + ' ' + str(f)}.csv"
+        if col not in dfs:
+            continue
+        
         dfs[col].to_csv(name)
         
 #def save_sql(dfs: dict, cols: list):
