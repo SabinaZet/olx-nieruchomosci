@@ -1,4 +1,5 @@
 from pipeline import paginate, normalized_data, key_info, nan_report, clean_data
+import pipeline.storage as ps
 
 def main():
 #list of dicts with scraped pages data,metadata and links
@@ -26,6 +27,9 @@ def main():
     print()
     print("Info summary about DataFrames after cleaning:")
     key_info(data_categories)
+    
+#save data to files
+    ps.save_csv(data_categories)
     
 if __name__ == '__main__':
     main()
