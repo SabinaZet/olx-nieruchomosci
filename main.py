@@ -1,6 +1,6 @@
-if __name__ == '__main__':
-    from pipeline import paginate, normalized_data, key_info, nan_report, clean_data
-    
+from pipeline import paginate, normalized_data, key_info, nan_report, clean_data
+
+def main():
 #list of dicts with scraped pages data,metadata and links
     pages = paginate()
 
@@ -26,5 +26,8 @@ if __name__ == '__main__':
     print()
     print("Info summary about DataFrames after cleaning:")
     key_info(data_categories)
+    
+if __name__ == '__main__':
+    main()
     
     

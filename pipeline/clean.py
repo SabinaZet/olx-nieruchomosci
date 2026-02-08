@@ -226,6 +226,9 @@ def delete_columns(dfs: dict, DEL_MAP: dict = DEL_MAP):
         to delete as values
     """
     for name, col in DEL_MAP.items():
+        if name not in dfs:
+            continue
+        
         dfs[name].drop(col, inplace=True, axis=1)
         
 def id_index(dfs: dict):
