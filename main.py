@@ -10,14 +10,22 @@ if __name__ == '__main__':
     
 #data cleaning
     
-#print df.info() and df.head(2) for all dfs
+#print df.info(), df.nunique() and df.head(2)
+#for all dfs before cleaning
+    print()
+    print("Info summary about DataFrames before cleaning:")
+    pc.key_info(data_categories)
+#clean DataFrames    
+    pc.clean_data(data_categories)
+#print report about NaN values in DataFrames columns    
+    print()
+    print('NaN Report:\n')
+    pc.nan_report(data_categories)
+    
+#print df.info(), nunique() and head(2) for all dfs
+#after cleaning
+    print()
+    print("Info summary about DataFrames after cleaning:")
     pc.key_info(data_categories)
     
-#delete NaN columns and duplicate id from all dfs and check
-    dfs_cl = pc.clean_nan_df(data_categories)
-    dfs_cl = pc.deduplicate(dfs_cl)
-    pc.key_info(dfs_cl)
-    
-#print df name and each column with the number of unique values
-    pc.check_data(dfs_cl)
     
